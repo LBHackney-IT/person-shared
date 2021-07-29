@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <PackageId>PersonShared</PackageId>
+    <RepositoryUrl>https://github.com/LBHackney-IT/person-shared</RepositoryUrl>
+    <Version>1.0.1</Version>
+    <Authors>London Borough of Hackney</Authors>
+    <Company>London Borough of Hackney</Company>
+    <Copyright>2021</Copyright>
+    <Description>Shared Library for Person service</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+</Project>
