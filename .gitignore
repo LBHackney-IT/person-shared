@@ -61,4 +61,5 @@ tmp/
 .fake
 .ionide
 
+*.nupkg
 testresults/
