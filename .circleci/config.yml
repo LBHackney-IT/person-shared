@@ -55,7 +55,7 @@ jobs:
           command: |
             cd /root/project/Hackney.Shared.Person/bin/Release
             dir
-            dotnet nuget push Hackney.Shared.Person.*.nupkg -s https://nuget.pkg.github.com/LBHackney-IT/index.json --api-key ${NUGET_KEY} Hackney.Shared.Person.*/*.nupkg
+            dotnet nuget push PersonShared.*.nupkg -s https://nuget.pkg.github.com/LBHackney-IT/index.json --api-key ${NUGET_KEY} PersonShared.*/*.nupkg
 workflows:
    nuget-package:
     jobs:
