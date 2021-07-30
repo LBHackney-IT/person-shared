@@ -54,6 +54,7 @@ jobs:
           name: Publish to GitHub
           command: |
             cd /root/project/Hackney.Shared.Person/bin/Release
+            dir
             dotnet nuget push Hackney.Shared.Person.*.nupkg -s https://nuget.pkg.github.com/LBHackney-IT/index.json --api-key ${NUGET_KEY} Hackney.Shared.Person.*/*.nupkg
 workflows:
    nuget-package:
