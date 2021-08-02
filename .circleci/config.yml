@@ -25,7 +25,7 @@ jobs:
       - checkout
       - run:
           name: Install dotnet format
-          command: dotnet tool install dotnet-format --tool-path ./dotnet-format-local/
+          command: dotnet tool install dotnet-format --tool-path ./dotnet-format-local/ --add-source 'https://api.nuget.org/v3/index.json' --ignore-failed-sources
       - run:
           name: Run formatter check
           command: ./dotnet-format-local/dotnet-format --check Hackney.Shared.Person
