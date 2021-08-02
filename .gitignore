@@ -65,3 +65,4 @@ tmp/
 
 *.nupkg
 testresults/
+Hackney.Shared.Person/obj/Debug/
