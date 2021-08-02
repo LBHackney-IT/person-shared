@@ -64,7 +64,7 @@ workflows:
       - publish-package
           # requires:
           #   - check-code-formatting
-          # filters:
-          #   branches:
-          #     only: main
+          filters:
+            branches:
+              only: main
           
