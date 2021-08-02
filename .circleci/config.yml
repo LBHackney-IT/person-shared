@@ -59,11 +59,11 @@ jobs:
 workflows:
    nuget-package:
     jobs:
-      # - check-code-formatting
+      - check-code-formatting
       # - build-and-test
       - publish-package:
-          # requires:
-          #   - check-code-formatting
+          requires:
+            - check-code-formatting
           filters:
             branches:
               only: main
