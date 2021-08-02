@@ -61,7 +61,7 @@ workflows:
     jobs:
       # - check-code-formatting
       # - build-and-test
-      - publish-package
+      - publish-package:
           # requires:
           #   - check-code-formatting
           filters:
