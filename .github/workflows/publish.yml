@@ -38,8 +38,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build the Package
-        run: dotnet pack Hackney.Shared.Activity -p:PackageVersion=$VERSION --configuration Release
+        run: dotnet pack Hackney.Shared.Person -p:PackageVersion=$VERSION --configuration Release
       - name: Publish the Package
         run: |
-          cd Hackney.Shared.Activity/bin/Release
-          dotnet nuget push Hackney.Shared.Activity.*.nupkg -s https://nuget.pkg.github.com/LBHackney-IT/index.json --api-key ${{secrets.NUGET_KEY }}
+          cd Hackney.Shared.Person/bin/Release
+          dotnet nuget push Hackney.Shared.Person.*.nupkg -s https://nuget.pkg.github.com/LBHackney-IT/index.json --api-key ${{secrets.NUGET_KEY }}
