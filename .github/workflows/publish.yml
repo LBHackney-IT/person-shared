@@ -28,6 +28,37 @@ jobs:
       - name: Display package version
         run: |
           echo "Version: $GITVERSION_NUGETVERSIONV2"
+
+  check-code-formatting:
+    name: Check code formatting
+    runs-on: ubuntu-latest
+    needs: calculate-version
+    env:
+      LBHPACKAGESTOKEN: ${{secrets.NUGET_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dotnet format
+        run: dotnet tool install dotnet-format --tool-path ./dotnet-format-local/
+      - name: Run formatter check
+        run: ./dotnet-format-local/dotnet-format --check
+
+  build-and-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    needs: calculate-version
+    env:
+      LBHPACKAGESTOKEN: ${{secrets.NUGET_KEY }}
+    outputs:
+      version: ${{ needs.calculate-version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: docker-compose build hackney-shared-person-test
+      - name: Run tests
+        run: docker-compose run hackney-shared-person-test
+
   publish-package:
     name: Publish Package
     runs-on: ubuntu-latest

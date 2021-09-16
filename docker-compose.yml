@@ -1,0 +1,10 @@
+version: "3.2"
+
+services:
+  hackney-shared-person-test:
+    image: hackney-shared-person-test
+    build:
+      context: .
+      dockerfile: Hackney.Shared.Person.Tests/Dockerfile
+      args:
+        - LBHPACKAGESTOKEN=${LBHPACKAGESTOKEN}
