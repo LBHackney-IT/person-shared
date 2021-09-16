@@ -30,7 +30,7 @@ namespace Hackney.Shared.Person
         public override bool Equals(object obj)
         {
             if (GetType() != obj.GetType()) return false;
-            var otherObj = (Tenure) obj;
+            var otherObj = (Tenure)obj;
             return AssetFullAddress.Equals(otherObj.AssetFullAddress)
                 && AssetId.Equals(otherObj.AssetId)
                 && StartDate.Equals(otherObj.StartDate)
