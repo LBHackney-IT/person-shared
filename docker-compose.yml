@@ -7,4 +7,4 @@ services:
       context: .
       dockerfile: Hackney.Shared.Person.Tests/Dockerfile
       args:
-        - LBHPACKAGESTOKEN=${LBHPACKAGESTOKEN}
+        - NUGET_KEY=${NUGET_KEY}
