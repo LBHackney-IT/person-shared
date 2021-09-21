@@ -1,7 +1,7 @@
 using Hackney.Shared.Person.Domain;
 using System;
 using System.Collections.Generic;
-using Hackney.Shared.Tenure;
+using Hackney.Shared.Tenure.Domain;
 
 namespace Hackney.Shared.Person.Tests.Helper
 {
