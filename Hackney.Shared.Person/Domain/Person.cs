@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Hackney.Shared.Tenure;
+using Hackney.Shared.Person.Domain;
 
-namespace Hackney.Shared.Person.Domain
+namespace Hackney.Shared.Person
 {
     public class Person
     {

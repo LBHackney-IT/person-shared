@@ -1,5 +1,4 @@
 using Hackney.Shared.Person.Infrastructure;
-using Hackney.Shared.Person.Domain;
 using System.Linq;
 
 namespace Hackney.Shared.Person.Factories
