@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Hackney.Shared.Tenure;
 
-namespace Hackney.Shared.Person
+namespace Hackney.Shared.Person.Domain
 {
     public class Person
     {

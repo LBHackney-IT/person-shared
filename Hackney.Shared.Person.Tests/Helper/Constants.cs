@@ -1,4 +1,4 @@
-using Hackney.Shared.Person;
+using Hackney.Shared.Person.Domain;
 using System;
 using System.Collections.Generic;
 using Hackney.Shared.Tenure;

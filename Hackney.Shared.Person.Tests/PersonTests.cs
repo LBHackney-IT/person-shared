@@ -1,6 +1,6 @@
 using FluentAssertions;
 using Hackney.Shared.Person.Tests.Helper;
-using Hackney.Shared.Person;
+using Hackney.Shared.Person.Domain;
 using System.Linq;
 using Xunit;
 

@@ -13,5 +13,6 @@
   <ItemGroup>
     <PackageReference Include="Hackney.Shared.Tenure" Version="0.1.2-preview0009" />
     <PackageReference Include="System.Text.Json" Version="5.0.2" />
+    <PackageReference Include="Hackney.Core.DynamoDb" Version="1.30.0" />
   </ItemGroup>
 </Project>
