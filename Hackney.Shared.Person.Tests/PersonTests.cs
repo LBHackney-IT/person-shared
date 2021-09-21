@@ -26,9 +26,10 @@ namespace Hackney.Shared.Person.Tests
             person.DateOfBirth.Should().Be(Constants.DATEOFBIRTH);
             person.PersonTypes.Should().BeEquivalentTo(Constants.PERSONTYPES);
             person.Tenures.Should().ContainSingle();
-            person.Tenures.First().AssetId.Should().Be(Constants.ASSETID);
-            person.Tenures.First().AssetFullAddress.Should().Be(Constants.ASSETFULLADDRESS);
-            person.Tenures.First().Type.Should().Be(Constants.SOMETYPE);
+            person.Tenures.First().Id.Should().Be(Constants.TENUREID);
+            person.Tenures.First().TenuredAsset.Id.Should().Be(Constants.ASSETID);
+            person.Tenures.First().TenuredAsset.FullAddress.Should().Be(Constants.ASSETFULLADDRESS);
+            person.Tenures.First().TenuredAsset.Type.Should().Be(Constants.SOMETYPE);
         }
     }
 }

@@ -1,6 +1,7 @@
 using Hackney.Shared.Person;
 using System;
 using System.Collections.Generic;
+using Hackney.Shared.Tenure;
 
 namespace Hackney.Shared.Person.Tests.Helper
 {
@@ -17,13 +18,13 @@ namespace Hackney.Shared.Person.Tests.Helper
         public const string SURNAME = "Roberts";
         public const string PLACEOFBIRTH = "London";
         public static DateTime DATEOFBIRTH { get; } = DateTime.UtcNow.AddYears(-40);
-
+        public static Guid TENUREID = Guid.NewGuid();
         public const string SOMEUPRN = "SomeUprn";
-        public const string SOMETYPE = "SomeType";
-        public const string ASSETID = "SomeId";
+        public const TenuredAssetType SOMETYPE = TenuredAssetType.Block;
+        public static Guid ASSETID = Guid.NewGuid();
         public const string ASSETFULLADDRESS = "SomeAddress";
-        public const string STARTDATE = "2012-07-19";
-        public const string ENDDATE = "2015-07-19";
+        public static DateTime STARTDATE = Convert.ToDateTime("2012-07-19");
+        public static DateTime ENDDATE = Convert.ToDateTime("2015-07-19");
 
         public static IEnumerable<PersonType> PERSONTYPES { get; }
             = new List<PersonType> { PersonType.HouseholdMember };
@@ -44,15 +45,18 @@ namespace Hackney.Shared.Person.Tests.Helper
             entity.DateOfBirth = Constants.DATEOFBIRTH;
             entity.Tenures = new[]
             {
-                new Tenure
+                new TenureInformation
                 {
-                    AssetFullAddress = ASSETFULLADDRESS,
-                    AssetId = ASSETID,
-                    EndDate = ENDDATE,
-                    StartDate = STARTDATE,
-                    Id = Guid.NewGuid(),
-                    Type = SOMETYPE,
-                    Uprn = SOMEUPRN
+                    Id = TENUREID,
+                    StartOfTenureDate = STARTDATE,
+                    EndOfTenureDate = ENDDATE,
+                    TenuredAsset = new TenuredAsset
+                    {
+                        Id = ASSETID,
+                        Type = SOMETYPE,
+                        FullAddress = ASSETFULLADDRESS,
+                        Uprn = SOMEUPRN
+                    }
                 }
             };
             entity.PersonTypes = Constants.PERSONTYPES;
