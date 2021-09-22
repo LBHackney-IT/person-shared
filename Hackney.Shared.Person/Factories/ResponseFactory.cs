@@ -52,6 +52,7 @@ namespace Hackney.Shared.Person.Factories
 
             var sortedTenures = tenures
                 .OrderByDescending(x => x.IsActive)
+                .ThenByDescending(x => x.TenureType.Description == "Secure")
                 .ThenByDescending(x => x.StartOfTenureDate)
                 .ToList();
 
