@@ -59,6 +59,7 @@ bin/
 .idea/
 tmp/
 .vs/
+.vscode/
 
 .fake
 .ionide
