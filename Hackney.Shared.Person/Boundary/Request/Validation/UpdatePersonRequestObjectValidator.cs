@@ -1,5 +1,6 @@
 using FluentValidation;
 using Hackney.Core.Validation;
+using Hackney.Shared.Tenure.Boundary.Requests.Validation;
 using System;
 
 namespace Hackney.Shared.Person.Boundary.Request.Validation
@@ -49,8 +50,7 @@ namespace Hackney.Shared.Person.Boundary.Request.Validation
                 .NotXssString()
                 .WithErrorCode(ErrorCodes.XssCheckFailure)
                 .When(y => !string.IsNullOrEmpty(y.PlaceOfBirth));
-
-            // RuleForEach(x => x.Tenures).SetValidator(new TenureValidator());
+            RuleForEach(x => x.Tenures).SetValidator(new TenureInformationValidator());
         }
     }
 }
