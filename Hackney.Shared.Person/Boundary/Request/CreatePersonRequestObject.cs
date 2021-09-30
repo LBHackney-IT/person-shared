@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Hackney.Shared.Person.Domain;
-using Hackney.Shared.Tenure.Domain;
 
 namespace Hackney.Shared.Person.Boundary.Request
 {
@@ -31,6 +30,6 @@ namespace Hackney.Shared.Person.Boundary.Request
 
         public string Reason { get; set; }
         public IEnumerable<PersonType> PersonTypes { get; set; }
-        public IEnumerable<TenureInformation> Tenures { get; set; }
+        public IEnumerable<TenureDetails> Tenures { get; set; }
     }
 }

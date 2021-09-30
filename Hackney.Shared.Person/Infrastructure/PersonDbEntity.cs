@@ -1,9 +1,8 @@
 using Amazon.DynamoDBv2.DataModel;
 using Hackney.Core.DynamoDb.Converters;
+using Hackney.Shared.Person.Domain;
 using System;
 using System.Collections.Generic;
-using Hackney.Shared.Person.Domain;
-using Hackney.Shared.Tenure.Domain;
 
 namespace Hackney.Shared.Person.Infrastructure
 {
@@ -32,8 +31,8 @@ namespace Hackney.Shared.Person.Infrastructure
         [DynamoDBProperty(Converter = typeof(DynamoDbEnumListConverter<PersonType>))]
         public List<PersonType> PersonTypes { get; set; } = new List<PersonType>();
 
-        [DynamoDBProperty(Converter = typeof(DynamoDbObjectListConverter<TenureInformation>))]
-        public List<TenureInformation> Tenures { get; set; } = new List<TenureInformation>();
+        [DynamoDBProperty(Converter = typeof(DynamoDbObjectListConverter<TenureDetails>))]
+        public List<Domain.TenureDetails> Tenures { get; set; } = new List<TenureDetails>();
 
         [DynamoDBVersion]
         public int? VersionNumber { get; set; }
