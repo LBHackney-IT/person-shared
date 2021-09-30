@@ -1,5 +1,4 @@
 using Hackney.Shared.Person.Domain;
-using Hackney.Shared.Tenure.Domain;
 using System;
 using System.Collections.Generic;
 
@@ -26,6 +25,6 @@ namespace Hackney.Shared.Person.Boundary.Request
         public string PlaceOfBirth { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
-        public IEnumerable<TenureInformation> Tenures { get; set; }
+        public IEnumerable<TenureDetails> Tenures { get; set; }
     }
 }

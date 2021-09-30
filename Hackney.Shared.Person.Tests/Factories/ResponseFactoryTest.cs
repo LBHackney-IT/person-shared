@@ -20,8 +20,8 @@ namespace Hackney.Shared.Person.Tests.Factories
 
         private readonly Random _random = new Random();
 
-        private readonly DateTime? _activeTenureDateValue = null;
-        private readonly DateTime? _inactiveTeunureDateValue = DateTime.UtcNow.AddDays(-7); // generate date in past
+        private readonly string _activeTenureDateValue = null;
+        private readonly string _inactiveTeunureDateValue = DateTime.UtcNow.AddDays(-7).ToString(); // generate date in past
 
 
         public ResponseFactoryTest()
@@ -82,9 +82,9 @@ namespace Hackney.Shared.Person.Tests.Factories
             var numberOfInactiveTenures = _random.Next(2, 5);
 
             // create many active tenures
-            var activeTenures = _fixture.Build<TenureInformation>().With(x => x.EndOfTenureDate, _activeTenureDateValue).CreateMany(numberOfActiveTenures);
+            var activeTenures = _fixture.Build<TenureDetails>().With(x => x.EndDate, _activeTenureDateValue).CreateMany(numberOfActiveTenures);
             // create many inactive tenures
-            var inactiveTenures = _fixture.Build<TenureInformation>().With(x => x.EndOfTenureDate, _inactiveTeunureDateValue).CreateMany(numberOfInactiveTenures);
+            var inactiveTenures = _fixture.Build<TenureDetails>().With(x => x.EndDate, _inactiveTeunureDateValue).CreateMany(numberOfInactiveTenures);
 
             // shuffle list
             var shuffledTenures = ShuffleTenures(activeTenures.Concat(inactiveTenures));
@@ -116,10 +116,10 @@ namespace Hackney.Shared.Person.Tests.Factories
             var numberOfOtherTenureTypes = _random.Next(2, 5);
 
             // create many secure tenures
-            var secureTenures = _fixture.Build<TenureInformation>().With(x => x.EndOfTenureDate, tenureEndDate).With(x => x.TenureType, TenureTypes.Secure).CreateMany(numberOfSecureTenures);
+            var secureTenures = _fixture.Build<TenureDetails>().With(x => x.EndDate, tenureEndDate).With(x => x.Type, "Secure").CreateMany(numberOfSecureTenures);
 
             // create many tenures of other types
-            var otherTenureTypes = _fixture.Build<TenureInformation>().With(x => x.EndOfTenureDate, tenureEndDate).CreateMany(numberOfOtherTenureTypes);
+            var otherTenureTypes = _fixture.Build<TenureDetails>().With(x => x.EndDate, tenureEndDate).CreateMany(numberOfOtherTenureTypes);
 
             // shuffle list
             var shuffledTenures = ShuffleTenures(secureTenures.Concat(otherTenureTypes));
@@ -134,10 +134,10 @@ namespace Hackney.Shared.Person.Tests.Factories
             var responseOtherTenureTypes = response.Tenures.Skip(numberOfSecureTenures).Take(numberOfOtherTenureTypes);
 
             // assert first half are secure
-            responseSecureTenures.Should().OnlyContain(x => x.TenureType.Description == "Secure");
+            responseSecureTenures.Should().OnlyContain(x => x.Type == "Secure");
 
             // assert second half arent secure
-            responseOtherTenureTypes.Should().NotContain(x => x.TenureType.Description == "Secure");
+            responseOtherTenureTypes.Should().NotContain(x => x.Type == "Secure");
         }
 
         [Theory]
@@ -151,17 +151,17 @@ namespace Hackney.Shared.Person.Tests.Factories
             var numberOfOtherTenureTypes = _random.Next(5, 10);
 
             // create many secure tenures
-            var secureTenures = _fixture.Build<TenureInformation>()
-                .With(x => x.EndOfTenureDate, tenureEndDate)
-                .With(x => x.TenureType, TenureTypes.Secure)
-                .With(x => x.StartOfTenureDate, CreateRandomStartDateValue())
+            var secureTenures = _fixture.Build<TenureDetails>()
+                .With(x => x.EndDate, tenureEndDate)
+                .With(x => x.Type, "Secure")
+                .With(x => x.StartDate, CreateRandomStartDateValue)
                 .CreateMany(numberOfSecureTenures);
 
             // create many tenures of other types
             var otherTenureTypes = _fixture
-                .Build<TenureInformation>()
-                .With(x => x.EndOfTenureDate, tenureEndDate)
-                .With(x => x.StartOfTenureDate, CreateRandomStartDateValue())
+                .Build<TenureDetails>()
+                .With(x => x.EndDate, tenureEndDate)
+                .With(x => x.StartDate, CreateRandomStartDateValue)
                 .CreateMany(numberOfOtherTenureTypes);
 
             // shuffle list
@@ -177,23 +177,23 @@ namespace Hackney.Shared.Person.Tests.Factories
             var responseOtherTenureTypes = response.Tenures.Skip(numberOfSecureTenures).Take(numberOfOtherTenureTypes);
 
             // assert tenures tenures are in date order
-            responseSecureTenures.Select(x => x.StartOfTenureDate).Should().BeInDescendingOrder();
-            responseOtherTenureTypes.Select(x => x.StartOfTenureDate).Should().BeInDescendingOrder();
+            responseSecureTenures.Select(x => DateTime.Parse(x.StartDate)).Should().BeInDescendingOrder();
+            responseOtherTenureTypes.Select(x => DateTime.Parse(x.StartDate)).Should().BeInDescendingOrder();
         }
 
-        private IEnumerable<TenureInformation> ShuffleTenures(IEnumerable<TenureInformation> list)
+        private IEnumerable<TenureDetails> ShuffleTenures(IEnumerable<TenureDetails> list)
         {
             Random random = new Random();
 
             return list.OrderBy(item => random.Next());
         }
 
-        private DateTime CreateRandomStartDateValue()
+        private string CreateRandomStartDateValue()
         {
             // An inactive tenure must have enddate set in past
             var numberOfDaysInPast = _random.Next(-1000, -1);
 
-            return DateTime.UtcNow.AddDays(numberOfDaysInPast);
+            return DateTime.UtcNow.AddDays(numberOfDaysInPast).ToString();
         }
     }
 }

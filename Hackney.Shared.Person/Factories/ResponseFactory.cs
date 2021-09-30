@@ -1,8 +1,6 @@
 using Hackney.Shared.Person.Boundary;
 using Hackney.Shared.Person.Boundary.Response;
-using Hackney.Shared.Tenure.Boundary.Response;
-using Hackney.Shared.Tenure.Domain;
-using Hackney.Shared.Tenure.Factories;
+using Hackney.Shared.Person.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,17 +44,42 @@ namespace Hackney.Shared.Person.Factories
             };
         }
 
-        private static List<TenureResponseObject> SortTenures(IEnumerable<TenureInformation> tenures)
+        private static List<TenureResponseObject> SortTenures(IEnumerable<TenureDetails> tenures)
         {
             if (tenures == null) return null;
 
             var sortedTenures = tenures
                 .OrderByDescending(x => x.IsActive)
-                .ThenByDescending(x => x.TenureType.Description == "Secure")
-                .ThenByDescending(x => x.StartOfTenureDate)
+                .ThenByDescending(x => x.Type == "Secure")
+                .ThenByDescending(ParseTenureStartDate)
                 .ToList();
 
-            return sortedTenures.Select(x => x.ToResponse()).ToList();
+            return sortedTenures.Select(x => ToResponse(x)).ToList();
+        }
+
+        private static DateTime? ParseTenureStartDate(TenureDetails tenure)
+        {
+            DateTime parsedDate;
+            if (DateTime.TryParse(tenure.StartDate, out parsedDate)) return (DateTime?)parsedDate;
+
+            return null;
+        }
+
+        public static TenureResponseObject ToResponse(TenureDetails tenure)
+        {
+            return new TenureResponseObject()
+            {
+                AssetFullAddress = tenure.AssetFullAddress,
+                AssetId = tenure.AssetId,
+                EndDate = tenure.EndDate,
+                Id = tenure.Id,
+                IsActive = tenure.IsActive,
+                PaymentReference = tenure.PaymentReference,
+                PropertyReference = tenure.PropertyReference,
+                StartDate = tenure.StartDate,
+                Type = tenure.Type,
+                Uprn = tenure.Uprn
+            };
         }
 
     }

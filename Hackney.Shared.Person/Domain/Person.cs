@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Hackney.Shared.Tenure.Domain;
 using Hackney.Shared.Person.Domain;
 
 namespace Hackney.Shared.Person
@@ -20,7 +19,7 @@ namespace Hackney.Shared.Person
         public DateTime? DateOfBirth { get; set; }
         public string Reason { get; set; }
         public IEnumerable<PersonType> PersonTypes { get; set; }
-        public IEnumerable<TenureInformation> Tenures { get; set; }
+        public IEnumerable<TenureDetails> Tenures { get; set; }
         public int? VersionNumber { get; set; }
         public DateTime? LastModified { get; set; }
     }
