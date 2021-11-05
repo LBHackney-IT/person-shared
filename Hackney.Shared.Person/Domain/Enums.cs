@@ -23,6 +23,8 @@ namespace Hackney.Shared.Person.Domain
         HouseholdMember,
         Leaseholder,
         Freeholder,
-        Occupant
+        Occupant,
+        HousingOfficer,
+        HousingAreaManager
     }
 }
