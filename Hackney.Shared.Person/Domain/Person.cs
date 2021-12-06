@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Hackney.Shared.Person.Domain;
 
 namespace Hackney.Shared.Person
@@ -22,5 +23,15 @@ namespace Hackney.Shared.Person
         public IEnumerable<TenureDetails> Tenures { get; set; }
         public int? VersionNumber { get; set; }
         public DateTime? LastModified { get; set; }
+
+        [JsonIgnore]
+        public bool? IsAMinor 
+        { 
+            get
+            {
+                if (!DateOfBirth.HasValue || DateOfBirth.Value == DateTime.MinValue) return null;
+                return DateOfBirth.Value.AddYears(18) > DateTime.UtcNow;
+            }
+        }
     }
 }

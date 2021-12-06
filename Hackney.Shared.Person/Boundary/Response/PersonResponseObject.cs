@@ -32,5 +32,7 @@ namespace Hackney.Shared.Person.Boundary.Response
         public IEnumerable<PersonType> PersonTypes { get; set; }
         public IEnumerable<ApiLink> Links { get; set; }
         public IEnumerable<TenureResponseObject> Tenures { get; set; }
+
+        public bool? IsAMinor { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Hackney.Shared.Person.Tests.Helper;
+using System;
 using System.Linq;
 using Xunit;
 
@@ -34,6 +35,41 @@ namespace Hackney.Shared.Person.Tests.Domain
             person.Tenures.First().PaymentReference.Should().Be(Constants.PAYMENTREF);
             person.Tenures.First().PropertyReference.Should().Be(Constants.PROPERTYREF);
             person.Tenures.First().Uprn.Should().Be(Constants.SOMEUPRN);
+        }
+
+        [Fact]
+        public void PersonIsAMinorTestNoDoBReturnsNull()
+        {
+            var person = new Person();
+            person.IsAMinor.Should().BeNull();
+
+            person.DateOfBirth = DateTime.MinValue;
+            person.IsAMinor.Should().BeNull();
+        }
+
+        [Fact]
+        public void PersonIsAMinorTestReturnsFalse()
+        {
+            var person = new Person();
+            person.DateOfBirth = DateTime.UtcNow.AddYears(-18);
+            person.IsAMinor.Should().BeFalse();
+
+            person.DateOfBirth = DateTime.UtcNow.AddYears(-38);
+            person.IsAMinor.Should().BeFalse();
+        }
+
+        [Fact]
+        public void PersonIsAMinorTestReturnsTrue()
+        {
+            var person = new Person();
+            person.DateOfBirth = DateTime.UtcNow.AddMinutes(-1);
+            person.IsAMinor.Should().BeTrue();
+
+            person.DateOfBirth = DateTime.UtcNow.AddYears(-1);
+            person.IsAMinor.Should().BeTrue();
+
+            person.DateOfBirth = DateTime.UtcNow.AddYears(-17);
+            person.IsAMinor.Should().BeTrue();
         }
     }
 }

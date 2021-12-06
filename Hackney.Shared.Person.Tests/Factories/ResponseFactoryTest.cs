@@ -73,6 +73,22 @@ namespace Hackney.Shared.Person.Tests.Factories
             response.PlaceOfBirth.Should().Be(person.PlaceOfBirth);
             response.DateOfBirth.Should().Be(ResponseFactory.FormatDateOfBirth(person.DateOfBirth));
             response.PersonTypes.Should().BeEquivalentTo(person.PersonTypes);
+            if (hasDob) response.IsAMinor.Should().BeFalse();
+            else response.IsAMinor.Should().BeNull();
+
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void CanMapADomainPersonToAResponsePersonIsAMinor(bool isMinor)
+        {
+            DateTime? dob = DateTime.UtcNow.AddYears(isMinor ? -10 : -30);
+            var person = _fixture.Build<Person>()
+                                 .With(x => x.DateOfBirth, dob)
+                                 .Create();
+            var response = _sut.ToResponse(person);
+            response.IsAMinor.Should().Be(isMinor);
         }
 
         [Fact]
