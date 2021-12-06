@@ -25,8 +25,8 @@ namespace Hackney.Shared.Person
         public DateTime? LastModified { get; set; }
 
         [JsonIgnore]
-        public bool? IsAMinor 
-        { 
+        public bool? IsAMinor
+        {
             get
             {
                 if (!DateOfBirth.HasValue || DateOfBirth.Value == DateTime.MinValue) return null;
