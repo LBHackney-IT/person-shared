@@ -40,7 +40,8 @@ namespace Hackney.Shared.Person.Factories
                 PersonTypes = domain.PersonTypes,
                 Links = _apiLinkGenerator?.GenerateLinksForPerson(domain),
                 Tenures = SortTenures(domain.Tenures),
-                Reason = domain.Reason
+                Reason = domain.Reason,
+                IsAMinor = domain.IsAMinor
             };
         }
 
