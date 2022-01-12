@@ -22,7 +22,9 @@ namespace Hackney.Shared.Person.Factories
                 PlaceOfBirth = updatePersonRequestObject.PlaceOfBirth,
                 DateOfBirth = updatePersonRequestObject.DateOfBirth,
                 PersonTypes = null,
-                Tenures = GetListOrNull(updatePersonRequestObject.Tenures)
+                Tenures = GetListOrNull(updatePersonRequestObject.Tenures),
+                DateOfDeath = updatePersonRequestObject.DateOfDeath
+
             };
         }
 

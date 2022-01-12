@@ -28,6 +28,7 @@ namespace Hackney.Shared.Person.Tests
             databaseEntity.PlaceOfBirth.Should().Be(entity.PlaceOfBirth);
             databaseEntity.DateOfBirth.Should().Be(entity.DateOfBirth);
             databaseEntity.Tenures.Should().BeEquivalentTo(entity.Tenures);
+            databaseEntity.DateOfDeath.Should().Be(entity.DateOfDeath);
         }
 
         [Fact]
@@ -48,6 +49,7 @@ namespace Hackney.Shared.Person.Tests
             person.DateOfBirth.Should().Be(databaseEntity.DateOfBirth);
             person.PersonTypes.Should().BeEquivalentTo(databaseEntity.PersonTypes);
             person.Tenures.Should().BeEquivalentTo(databaseEntity.Tenures);
+            person.DateOfDeath.Should().Be(databaseEntity.DateOfDeath);
         }
     }
 }

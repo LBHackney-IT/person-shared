@@ -17,6 +17,8 @@ namespace Hackney.Shared.Person.Tests.Helper
         public const string SURNAME = "Roberts";
         public const string PLACEOFBIRTH = "London";
         public static DateTime DATEOFBIRTH { get; } = DateTime.UtcNow.AddYears(-40);
+        public static DateTime DATEOFDEATH { get; } = DateTime.UtcNow.AddYears(40);
+
 
         public static Guid TENUREID = Guid.NewGuid();
         public const string SOMEUPRN = "SomeUprn";
@@ -45,6 +47,7 @@ namespace Hackney.Shared.Person.Tests.Helper
             entity.Surname = Constants.SURNAME;
             entity.PlaceOfBirth = Constants.PLACEOFBIRTH;
             entity.DateOfBirth = Constants.DATEOFBIRTH;
+            entity.DateOfDeath = Constants.DATEOFDEATH;
             entity.Tenures = new[]
             {
                 new Shared.Person.Domain.TenureDetails
