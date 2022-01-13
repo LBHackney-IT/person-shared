@@ -24,6 +24,7 @@ namespace Hackney.Shared.Person.Tests.Domain
             person.Surname.Should().Be(Constants.SURNAME);
             person.PlaceOfBirth.Should().Be(Constants.PLACEOFBIRTH);
             person.DateOfBirth.Should().Be(Constants.DATEOFBIRTH);
+            person.DateOfDeath.Should().Be(Constants.DATEOFDEATH);
             person.PersonTypes.Should().BeEquivalentTo(Constants.PERSONTYPES);
             person.Tenures.Should().ContainSingle();
             person.Tenures.First().Id.Should().Be(Constants.TENUREID);

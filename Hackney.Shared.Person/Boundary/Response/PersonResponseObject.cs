@@ -34,5 +34,6 @@ namespace Hackney.Shared.Person.Boundary.Response
         public IEnumerable<TenureResponseObject> Tenures { get; set; }
 
         public bool? IsAMinor { get; set; }
+        public DateTime? DateOfDeath { get; set; }
     }
 }

@@ -26,5 +26,7 @@ namespace Hackney.Shared.Person.Boundary.Request
 
         public DateTime? DateOfBirth { get; set; }
         public IEnumerable<TenureDetails> Tenures { get; set; }
+        public DateTime? DateOfDeath { get; set; }
+
     }
 }

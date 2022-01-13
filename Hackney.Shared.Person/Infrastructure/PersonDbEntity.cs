@@ -39,5 +39,9 @@ namespace Hackney.Shared.Person.Infrastructure
 
         [DynamoDBProperty(Converter = typeof(DynamoDbDateTimeConverter))]
         public DateTime? LastModified { get; set; }
+
+        [DynamoDBProperty(Converter = typeof(DynamoDbDateTimeConverter))]
+        public DateTime? DateOfDeath { get; set; }
+
     }
 }

@@ -23,6 +23,8 @@ namespace Hackney.Shared.Person
         public IEnumerable<TenureDetails> Tenures { get; set; }
         public int? VersionNumber { get; set; }
         public DateTime? LastModified { get; set; }
+        public DateTime? DateOfDeath { get; set; }
+
 
         [JsonIgnore]
         public bool? IsAMinor
