@@ -23,7 +23,7 @@ Any specific version number follows the form `Major.Minor.Patch[-Suffix]`, where
 In order for the pipeline to be able to run automated tests and create preview versions of packages, you must name your branch correctly.
 
 **Name your branch following the convention of `feature/<some-feature>`.** This will allow the pipeline to work correctly. 
-If all tests pass, a new version of your package will be publised on every commit. You can see published versions of packages [here](https://github.com/orgs/LBHackney-IT/packages?repo_name=housing-search-shared).
+If all tests pass, a new version of your package will be publised on every commit. You can see published versions of packages [here](https://github.com/orgs/LBHackney-IT/packages?repo_name=person-shared).
 
 All preview versions of packages will have the suffix **`-feat-<branch-name>-<number>`**.
 
