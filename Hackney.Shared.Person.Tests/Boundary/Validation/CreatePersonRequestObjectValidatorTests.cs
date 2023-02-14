@@ -48,6 +48,14 @@ namespace Hackney.Shared.Person.Tests.Boundary.Request.Validation
             result.ShouldHaveValidationErrorFor(x => x.Title);
         }
 
+        [Fact]
+        public void TitleShouldNotErrorWithNullValue()
+        {
+            var model = new CreatePersonRequestObject() { Title = null };
+            var result = _sut.TestValidate(model);
+            result.ShouldNotHaveValidationErrorFor(x => x.Title);
+        }
+
         [Theory]
         [MemberData(nameof(Titles))]
         [InlineData(null)]
@@ -209,6 +217,14 @@ namespace Hackney.Shared.Person.Tests.Boundary.Request.Validation
             var result = _sut.TestValidate(model);
             result.ShouldHaveValidationErrorFor(x => x.DateOfBirth)
                   .WithErrorCode(ErrorCodes.DoBInvalid);
+        }
+
+        [Fact]
+        public void DateOfBirthShouldNotErrorWithNullValue()
+        {
+            var model = new CreatePersonRequestObject() { DateOfBirth = null };
+            var result = _sut.TestValidate(model);
+            result.ShouldNotHaveValidationErrorFor(x => x.DateOfBirth);
         }
 
         [Fact]

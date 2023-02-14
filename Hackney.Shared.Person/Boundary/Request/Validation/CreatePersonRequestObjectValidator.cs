@@ -8,11 +8,9 @@ namespace Hackney.Shared.Person.Boundary.Request.Validation
     {
         public CreatePersonRequestObjectValidator()
         {
-            RuleFor(x => x.Title).NotNull()
-                                 .IsInEnum();
+            RuleFor(x => x.Title).IsInEnum();
 
-            RuleFor(x => x.DateOfBirth).NotNull()
-                                       .NotEqual(default(DateTime))
+            RuleFor(x => x.DateOfBirth).NotEqual(default(DateTime))
                                        .WithErrorCode(ErrorCodes.DoBInvalid);
             RuleFor(x => x.DateOfBirth).LessThan(DateTime.UtcNow)
                                        .WithErrorCode(ErrorCodes.DoBInFuture);
