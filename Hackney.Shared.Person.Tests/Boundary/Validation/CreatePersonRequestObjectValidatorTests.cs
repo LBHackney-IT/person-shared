@@ -54,7 +54,7 @@ namespace Hackney.Shared.Person.Tests.Boundary.Request.Validation
         public void TitleShouldNotErrorWithNullValueIfPersonTypeIsHOorHAM(PersonType personType)
         {
             var personTypeList = new List<PersonType>() { personType };
-            var model = new CreatePersonRequestObject() { Title = null, PersonTypes = personTypeList};
+            var model = new CreatePersonRequestObject() { Title = null, PersonTypes = personTypeList };
             var result = _sut.TestValidate(model);
             result.ShouldNotHaveValidationErrorFor(x => x.Title);
         }

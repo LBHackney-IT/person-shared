@@ -41,7 +41,7 @@ namespace Hackney.Shared.Person.Boundary.Request.Validation
             RuleFor(x => x.Surname).NotXssString()
                                    .WithErrorCode(ErrorCodes.XssCheckFailure);
 
-            
+
             RuleForEach(x => x.PersonTypes)
                 .ChildRules(x => x.RuleFor(y => y).IsInEnum());
 
