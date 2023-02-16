@@ -1,6 +1,8 @@
 using FluentValidation;
 using Hackney.Core.Validation;
+using Hackney.Shared.Person.Domain;
 using System;
+using System.Linq;
 
 namespace Hackney.Shared.Person.Boundary.Request.Validation
 {
@@ -10,10 +12,19 @@ namespace Hackney.Shared.Person.Boundary.Request.Validation
         {
             RuleFor(x => x.Title).IsInEnum();
 
+            //Title should be nullable for HousingOfficer and HousingAreaManager PersonTypes. 
+            RuleFor(x => x.Title).NotNull().When(x => false == x.PersonTypes.Contains(PersonType.HousingOfficer))
+                                           .When(x => false == x.PersonTypes.Contains(PersonType.HousingAreaManager));
+
+
             RuleFor(x => x.DateOfBirth).NotEqual(default(DateTime))
                                        .WithErrorCode(ErrorCodes.DoBInvalid);
             RuleFor(x => x.DateOfBirth).LessThan(DateTime.UtcNow)
                                        .WithErrorCode(ErrorCodes.DoBInFuture);
+
+            //DOB should be nullable for HousingOfficer and HousingAreaManager PersonTypes
+            RuleFor(x => x.DateOfBirth).NotNull().When(x => false == x.PersonTypes.Contains(PersonType.HousingOfficer))
+                                                 .When(x => false == x.PersonTypes.Contains(PersonType.HousingAreaManager));
 
             RuleFor(x => x.FirstName).NotNull()
                                      .NotEmpty()
