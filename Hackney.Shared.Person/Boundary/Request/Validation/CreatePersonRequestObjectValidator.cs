@@ -1,6 +1,8 @@
 using FluentValidation;
 using Hackney.Core.Validation;
+using Hackney.Shared.Person.Domain;
 using System;
+using System.Linq;
 
 namespace Hackney.Shared.Person.Boundary.Request.Validation
 {
@@ -8,14 +10,24 @@ namespace Hackney.Shared.Person.Boundary.Request.Validation
     {
         public CreatePersonRequestObjectValidator()
         {
-            RuleFor(x => x.Title).NotNull()
-                                 .IsInEnum();
+            RuleFor(x => x.PersonTypes).NotNull()
+                                       .NotEmpty()
+                                       .WithErrorCode(ErrorCodes.PersonTypeMandatory);
 
-            RuleFor(x => x.DateOfBirth).NotNull()
-                                       .NotEqual(default(DateTime))
+            RuleFor(x => x.Title).IsInEnum();
+
+            //Title should be nullable for HousingOfficer and HousingAreaManager PersonTypes. 
+            RuleFor(x => x.Title).NotNull().When(x => x.PersonTypes?.Contains(PersonType.HousingOfficer) == false)
+                                           .When(x => x.PersonTypes?.Contains(PersonType.HousingAreaManager) == false);
+
+            RuleFor(x => x.DateOfBirth).NotEqual(default(DateTime))
                                        .WithErrorCode(ErrorCodes.DoBInvalid);
             RuleFor(x => x.DateOfBirth).LessThan(DateTime.UtcNow)
                                        .WithErrorCode(ErrorCodes.DoBInFuture);
+
+            //DOB should be nullable for HousingOfficer and HousingAreaManager PersonTypes
+            RuleFor(x => x.DateOfBirth).NotNull().When(x => x.PersonTypes?.Contains(PersonType.HousingOfficer) == false)
+                                                 .When(x => x.PersonTypes?.Contains(PersonType.HousingAreaManager) == false);
 
             RuleFor(x => x.FirstName).NotNull()
                                      .NotEmpty()
@@ -29,9 +41,7 @@ namespace Hackney.Shared.Person.Boundary.Request.Validation
             RuleFor(x => x.Surname).NotXssString()
                                    .WithErrorCode(ErrorCodes.XssCheckFailure);
 
-            RuleFor(x => x.PersonTypes).NotNull()
-                                       .NotEmpty()
-                                       .WithErrorCode(ErrorCodes.PersonTypeMandatory);
+
             RuleForEach(x => x.PersonTypes)
                 .ChildRules(x => x.RuleFor(y => y).IsInEnum());
 

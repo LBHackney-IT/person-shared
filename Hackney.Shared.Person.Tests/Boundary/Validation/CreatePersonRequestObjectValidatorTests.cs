@@ -49,6 +49,31 @@ namespace Hackney.Shared.Person.Tests.Boundary.Request.Validation
         }
 
         [Theory]
+        [InlineData(PersonType.HousingOfficer)]
+        [InlineData(PersonType.HousingAreaManager)]
+        public void TitleShouldNotErrorWithNullValueIfPersonTypeIsHOorHAM(PersonType personType)
+        {
+            var personTypeList = new List<PersonType>() { personType };
+            var model = new CreatePersonRequestObject() { Title = null, PersonTypes = personTypeList };
+            var result = _sut.TestValidate(model);
+            result.ShouldNotHaveValidationErrorFor(x => x.Title);
+        }
+
+        [Theory]
+        [InlineData(PersonType.Freeholder)]
+        [InlineData(PersonType.Occupant)]
+        [InlineData(PersonType.Tenant)]
+        [InlineData(PersonType.Leaseholder)]
+        [InlineData(PersonType.HouseholdMember)]
+        public void TitleShouldErrorWithNullValueIfPersonTypeIsNotHOorHAM(PersonType personType)
+        {
+            var personTypeList = new List<PersonType>() { personType };
+            var model = new CreatePersonRequestObject() { Title = null, PersonTypes = personTypeList };
+            var result = _sut.TestValidate(model);
+            result.ShouldHaveValidationErrorFor(x => x.Title);
+        }
+
+        [Theory]
         [MemberData(nameof(Titles))]
         [InlineData(null)]
         public void PreferredTitleShouldNotErrorWithValidValue(Title? valid)
@@ -209,6 +234,31 @@ namespace Hackney.Shared.Person.Tests.Boundary.Request.Validation
             var result = _sut.TestValidate(model);
             result.ShouldHaveValidationErrorFor(x => x.DateOfBirth)
                   .WithErrorCode(ErrorCodes.DoBInvalid);
+        }
+
+        [Theory]
+        [InlineData(PersonType.HousingOfficer)]
+        [InlineData(PersonType.HousingAreaManager)]
+        public void DateOfBirthShouldNotErrorWithNullIfPersonTypeIsHOOrHAM(PersonType personType)
+        {
+            var listOfPersonType = new List<PersonType>() { personType };
+            var model = new CreatePersonRequestObject() { DateOfBirth = null, PersonTypes = listOfPersonType };
+            var result = _sut.TestValidate(model);
+            result.ShouldNotHaveValidationErrorFor(x => x.DateOfBirth);
+        }
+
+        [Theory]
+        [InlineData(PersonType.Freeholder)]
+        [InlineData(PersonType.Occupant)]
+        [InlineData(PersonType.Tenant)]
+        [InlineData(PersonType.Leaseholder)]
+        [InlineData(PersonType.HouseholdMember)]
+        public void DateOfBirthShouldErrorWithNullValueIfPersonTypeIsNotHOorHAM(PersonType personType)
+        {
+            var personTypeList = new List<PersonType>() { personType };
+            var model = new CreatePersonRequestObject() { DateOfBirth = null, PersonTypes = personTypeList };
+            var result = _sut.TestValidate(model);
+            result.ShouldHaveValidationErrorFor(x => x.DateOfBirth);
         }
 
         [Fact]
