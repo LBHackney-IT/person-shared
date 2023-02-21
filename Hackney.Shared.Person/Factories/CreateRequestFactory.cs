@@ -13,7 +13,7 @@ namespace Hackney.Shared.Person.Factories
             return new PersonDbEntity()
             {
                 Id = createPersonRequestObject.Id == Guid.Empty ? Guid.NewGuid() : createPersonRequestObject.Id,
-                Title = createPersonRequestObject.Title,
+                Title = createPersonRequestObject?.Title,
                 PreferredTitle = createPersonRequestObject.PreferredTitle,
                 PreferredMiddleName = createPersonRequestObject.PreferredMiddleName,
                 PreferredFirstName = createPersonRequestObject.PreferredFirstName,
@@ -22,7 +22,7 @@ namespace Hackney.Shared.Person.Factories
                 MiddleName = createPersonRequestObject.MiddleName,
                 Surname = createPersonRequestObject.Surname,
                 PlaceOfBirth = createPersonRequestObject.PlaceOfBirth,
-                DateOfBirth = createPersonRequestObject.DateOfBirth,
+                DateOfBirth = createPersonRequestObject?.DateOfBirth,
                 Reason = createPersonRequestObject.Reason,
                 PersonTypes = GetListOrEmpty(createPersonRequestObject.PersonTypes),
                 Tenures = GetListOrEmpty(createPersonRequestObject.Tenures)
