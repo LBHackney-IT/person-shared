@@ -4,7 +4,7 @@ on:
     branches:
     - main
     - feature/**
-    
+
 jobs:
   calculate-version:
     name: Calculate Version
@@ -57,9 +57,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
-        run: docker-compose build hackney-shared-person-test
+        run: docker compose build hackney-shared-person-test
       - name: Run tests
-        run: docker-compose run hackney-shared-person-test
+        run: docker compose run hackney-shared-person-test
 
   publish-package:
     name: Publish Package
