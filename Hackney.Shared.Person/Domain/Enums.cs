@@ -11,6 +11,7 @@ namespace Hackney.Shared.Person.Domain
         Mr,
         Mrs,
         Ms,
+        Mx,
         Other,
         Rabbi,
         Reverend
