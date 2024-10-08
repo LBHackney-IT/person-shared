@@ -6,5 +6,12 @@ services:
     build:
       context: .
       dockerfile: Hackney.Shared.Person.Tests/Dockerfile
-      args:
-        - LBHPACKAGESTOKEN=${LBHPACKAGESTOKEN}
+      secrets:
+        - LBHPACKAGESTOKEN
+
+# see https://docs.docker.com/compose/how-tos/use-secrets/#build-secrets
+# Combines with a "secrets" block in each service to expose it as a file in
+# /run/secrets/, e.g. /run/secrets/LBHPACKAGESTOKEN
+secrets:
+  LBHPACKAGESTOKEN:
+    environment: LBHPACKAGESTOKEN
