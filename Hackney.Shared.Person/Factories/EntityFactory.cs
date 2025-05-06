@@ -25,7 +25,8 @@ namespace Hackney.Shared.Person.Factories
                 Tenures = databaseEntity.Tenures,
                 VersionNumber = databaseEntity.VersionNumber,
                 LastModified = databaseEntity.LastModified,
-                DateOfDeath = databaseEntity.DateOfDeath
+                DateOfDeath = databaseEntity.DateOfDeath,
+                PersonRef = databaseEntity.PersonRef
             };
         }
 
@@ -49,7 +50,8 @@ namespace Hackney.Shared.Person.Factories
                 Tenures = entity.Tenures.ToList(),
                 VersionNumber = entity.VersionNumber,
                 LastModified = entity.LastModified,
-                DateOfDeath = entity.DateOfDeath
+                DateOfDeath = entity.DateOfDeath,
+                PersonRef = entity.PersonRef
             };
         }
     }

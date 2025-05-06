@@ -36,6 +36,7 @@ namespace Hackney.Shared.Person.Tests.Domain
             person.Tenures.First().PaymentReference.Should().Be(Constants.PAYMENTREF);
             person.Tenures.First().PropertyReference.Should().Be(Constants.PROPERTYREF);
             person.Tenures.First().Uprn.Should().Be(Constants.SOMEUPRN);
+            person.PersonRef.Should().Be(Constants.PERSONREF);
         }
 
         [Fact]

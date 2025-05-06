@@ -29,6 +29,7 @@ namespace Hackney.Shared.Person.Tests.Helper
         public const string ENDDATE = "2015-07-19";
         public const string PAYMENTREF = "123456789";
         public const string PROPERTYREF = "987654321";
+        public const int PERSONREF = 70000000;
 
         public static IEnumerable<PersonType> PERSONTYPES { get; }
             = new List<PersonType> { PersonType.HouseholdMember };
@@ -64,6 +65,7 @@ namespace Hackney.Shared.Person.Tests.Helper
                 }
             };
             entity.PersonTypes = Constants.PERSONTYPES;
+            entity.PersonRef = Constants.PERSONREF;
             return entity;
         }
     }

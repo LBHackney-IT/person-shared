@@ -35,5 +35,7 @@ namespace Hackney.Shared.Person.Boundary.Response
 
         public bool? IsAMinor { get; set; }
         public DateTime? DateOfDeath { get; set; }
+
+        public int PersonRef { get; set; }
     }
 }
