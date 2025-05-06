@@ -42,7 +42,8 @@ namespace Hackney.Shared.Person.Factories
                 Tenures = SortTenures(domain.Tenures),
                 Reason = domain.Reason,
                 IsAMinor = domain.IsAMinor,
-                DateOfDeath = domain.DateOfDeath
+                DateOfDeath = domain.DateOfDeath,
+                PersonRef = domain.PersonRef
             };
         }
 

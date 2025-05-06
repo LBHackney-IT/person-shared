@@ -43,5 +43,7 @@ namespace Hackney.Shared.Person.Infrastructure
         [DynamoDBProperty(Converter = typeof(DynamoDbDateTimeConverter))]
         public DateTime? DateOfDeath { get; set; }
 
+        public int PersonRef { get; set; }
+
     }
 }

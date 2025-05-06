@@ -75,6 +75,7 @@ namespace Hackney.Shared.Person.Tests.Factories
             response.PersonTypes.Should().BeEquivalentTo(person.PersonTypes);
             if (hasDob) response.IsAMinor.Should().BeFalse();
             else response.IsAMinor.Should().BeNull();
+            response.PersonRef.Should().Be(person.PersonRef);
 
         }
 

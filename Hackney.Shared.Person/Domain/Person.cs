@@ -25,6 +25,8 @@ namespace Hackney.Shared.Person
         public DateTime? LastModified { get; set; }
         public DateTime? DateOfDeath { get; set; }
 
+        public int PersonRef {  get; set; }
+
 
         [JsonIgnore]
         public bool? IsAMinor
